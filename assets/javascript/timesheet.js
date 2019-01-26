@@ -54,6 +54,8 @@ $(document).ready(function(){
             start_date: start_date
         });
 
+        resetVals();
+
     //  Close on submit function
     })
 
