@@ -9,10 +9,6 @@ messagingSenderId: "30282190889"
 };
 firebase.initializeApp(config);
 
-
-// On click of submit button, grab input from the forms, assign to variable names, set the variables in the database,
-// append variable names to html table
-
 var database = firebase.database();
 
 var name = "";
@@ -30,10 +26,9 @@ function resetVals() {
 
 //Compute total months worked
 function totalMonths(startDate) {
-
+    var convertedDate = moment(startDate, "MM/DD/YYYY")
+    return totalMonths = -(convertedDate.diff(moment(), "months"))
 }
-
-
 
 $(document).ready(function(){
 
