@@ -1,0 +1,21 @@
+body {
+    
+}
+#top {
+    text-align : center;
+    background-color : black;
+    color:white;
+    padding-bottom : 50px;
+}
+.card {
+    margin-bottom : 20px;
+}
+
+
+
+form {
+    padding:10px;
+}
+input {
+    margin-left:5px;
+}
