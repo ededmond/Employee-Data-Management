@@ -28,6 +28,13 @@ function resetVals() {
     $("#input-start-date").val("");
 }
 
+//Compute total months worked
+function totalMonths(startDate) {
+
+}
+
+
+
 $(document).ready(function(){
 
     $("form").submit(function(event){
@@ -52,23 +59,36 @@ $(document).ready(function(){
     // Close on submit function
     })
 
-// create event listener for when a child is added to the database via a user form submission
-database.ref().on("child_added", function (snapshot) {
-    console.log(snapshot);
+    // create event listener for when a child is added to the database via a user form submission
+    database.ref().on("child_added", function (snapshot) {
+        console.log(snapshot);
 
-    var newTR = $("<tr>");
-    var newTDname = $("<td>").text(snapshot.val().name);
-    
+        var newTR = $("<tr>");
+        var newTDname = $("<td>").text(snapshot.val().name);
+        var newTDrole = $("<td>").text(snapshot.val().role);
+        var newTDrate = $("<td>").text(snapshot.val().rate);
+        var newTDstart_date = $("<td>").text(snapshot.val().start_date);
+        
+        //Grab start date and rate information to manipulate
+        var start_date = snapshot.val().start_date;
+        var rate = snapshot.val().rate;
 
+        //Compute number of months work based off of start date and today
+        var monthsWorked = totalMonths(start_date);
 
+        //Compute total amount paid by numMonths * rate
+        var totalPay = monthsWorked * parseInt(rate);
 
+        //Create table elements for numMonths and total pay
+        var newTDtotalPay = $("<td>").text(totalPay);
+        var newTDmonthsWorked = $("<td>").text(monthsWorked);
 
+        //Append elements to new table row then append the row to the table body
+        newTR.append(newTDname, newTDrole, newTDstart_date, newTDmonthsWorked, newTDrate, newTDtotalPay);
+        $("#employee-row").append(newTR)
 
-
-
-
-
-
+    //Close database event listener
+    });
 
 // close doc ready function 
 })
