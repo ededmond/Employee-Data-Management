@@ -33,6 +33,7 @@ function resetVals() {
 $(document).ready(function(){
 
 $("form").submit(function(event){
+    console.log('got here');
 // prevents the page from executing a full refresh on the click of the submission
 event.preventDefault();
 
