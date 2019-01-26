@@ -19,3 +19,7 @@ form {
 input {
     margin-left:5px;
 }
+
+tr:nth-child(even) {
+    background-color: #f2faf4
+  }
