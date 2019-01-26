@@ -26,32 +26,35 @@ function resetVals() {
 
 //Compute total months worked
 function totalMonths(startDate) {
-    var convertedDate = moment(startDate, "MM/DD/YYYY")
-    return totalMonths = -(convertedDate.diff(moment(), "months"))
+    var convertedDate = moment(startDate, "YYYY/MM/DD")
+    var totalMonths = moment().diff(convertedDate, "months");
+    
+    // console.log(totalMonths);
+    return totalMonths;
 }
 
 $(document).ready(function(){
 
     $("form").submit(function(event){
         console.log('got here');
-    // prevents the page from executing a full refresh on the click of the submission
-    event.preventDefault();
+        // prevents the page from executing a full refresh on the click of the submission
+        event.preventDefault();
 
-    // Assigin the user input values to the name, role rate, start_date variables
-    name = $("#input-name").val(); 
-    role = $("#input-role").val(); 
-    rate = $("#input-monthly-rate").val(); 
-    start_date = $("#input-start-date").val(); 
+        // Assigin the user input values to the name, role rate, start_date variables
+        name = $("#input-name").val(); 
+        role = $("#input-role").val(); 
+        rate = $("#input-monthly-rate").val(); 
+        start_date = $("#input-start-date").val(); 
 
         // establish variables in database
-        database.ref().add({
+        database.ref().push({
             name: name,
             role: role,
             rate: rate,
             start_date: start_date
         });
 
-    // Close on submit function
+    //  Close on submit function
     })
 
     // create event listener for when a child is added to the database via a user form submission
@@ -63,7 +66,7 @@ $(document).ready(function(){
         var newTDrole = $("<td>").text(snapshot.val().role);
         var newTDrate = $("<td>").text(snapshot.val().rate);
         var newTDstart_date = $("<td>").text(snapshot.val().start_date);
-        
+        console.log(snapshot.val());
         //Grab start date and rate information to manipulate
         var start_date = snapshot.val().start_date;
         var rate = snapshot.val().rate;
